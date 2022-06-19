@@ -1,8 +1,15 @@
 {
   "name": "lowdux",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "low-cost react side-load state management",
   "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "test": "rive test",
     "start": "rive start",
@@ -21,24 +28,16 @@
     "url": "https://github.com/guoyunhe/lowdux/issues"
   },
   "homepage": "https://github.com/guoyunhe/lowdux#readme",
-  "module": "dist/index.mjs",
-  "style": "dist/index.css",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "CHANGELOG.md"
-  ],
   "devDependencies": {
-    "@types/jest": "^18.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "jest": "^28.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "@types/jest": "^18.1.1",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "jest": "^28.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rive": "latest",
-    "ts-jest": "^28.0.0",
-    "typescript": "^4.0.0"
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   },
   "eslintConfig": {
     "extends": [
