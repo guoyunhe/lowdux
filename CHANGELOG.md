@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Make selector optional
+
 ## 0.2.0
 
 - Return original setState function

@@ -3,7 +3,7 @@ import { store } from './LowduxStore';
 
 export function useLowduxSelector<T>(
   path: string,
-  selector: (state: any) => T
+  selector: (state: any) => T = (state) => state
 ) {
   const [state, setState] = useState<T>(selector(store.get(path)));
   const oldValueRef = useRef<T>(state);
