@@ -1,6 +1,6 @@
 {
   "name": "lowdux",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "low-cost react side-load state management",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
