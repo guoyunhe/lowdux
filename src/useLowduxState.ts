@@ -1,15 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { store } from './LowduxStore';
 
-export function useLowduxState<T>(path: string) {
+export function useLowduxState<T>(
+  path: string
+): [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] {
   const [state, setState] = useState<T>();
-
-  const setStateAndEmit = useCallback(
-    (data: T) => {
-      store.set(path, data);
-    },
-    [path]
-  );
 
   useEffect(() => {
     function onChange(changePath: string) {
@@ -23,5 +18,9 @@ export function useLowduxState<T>(path: string) {
     };
   }, [path]);
 
-  return [state, setStateAndEmit];
+  useEffect(() => {
+    store.set(path, state);
+  }, [state, path]);
+
+  return [state, useState];
 }
