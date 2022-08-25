@@ -6,9 +6,8 @@ import {
   hasProperty,
   setProperty,
 } from 'dot-prop';
-import Emittery from 'emittery';
 
-export class LowduxStore extends Emittery {
+export class LowduxStore extends EventTarget {
   private data: Record<string, any> = {};
 
   /**
@@ -43,7 +42,7 @@ export class LowduxStore extends Emittery {
       });
     } else {
       // diff of number, string, boolean, null, undefined, etc
-      this.emit('change', path);
+      this.dispatchEvent(new CustomEvent('change', { detail: path }));
       let fullPath = path;
       let dotIndex = -1;
       do {
@@ -54,7 +53,7 @@ export class LowduxStore extends Emittery {
     }
 
     eventPathSet.forEach((p) => {
-      this.emit('change', p);
+      this.dispatchEvent(new CustomEvent('change', { detail: p }));
     });
 
     return this;

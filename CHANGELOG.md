@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Use EventTarget to reduce dependencies
+
 ## 0.3.0
 
 - Make selector optional

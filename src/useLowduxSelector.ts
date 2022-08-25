@@ -17,15 +17,15 @@ export function useLowduxSelector<T>(
         oldValueRef.current = newValue;
       }
     }
-    function onChange(changePath: string) {
-      if (changePath === path) {
+    function onChange(e: Event) {
+      if ((e as CustomEvent).detail === path) {
         update();
       }
     }
     update();
-    store.on('change', onChange);
+    store.addEventListener('change', onChange);
     return () => {
-      store.off('change', onChange);
+      store.removeEventListener('change', onChange);
     };
   }, [path, selector]);
 

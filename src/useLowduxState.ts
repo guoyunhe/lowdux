@@ -7,14 +7,14 @@ export function useLowduxState<T>(
   const [state, setState] = useState<T>();
 
   useEffect(() => {
-    function onChange(changePath: string) {
-      if (changePath === path) {
+    function onChange(e: Event) {
+      if ((e as CustomEvent).detail === path) {
         setState(store.get(path));
       }
     }
-    store.on('change', onChange);
+    store.addEventListener('change', onChange);
     return () => {
-      store.off('change', onChange);
+      store.removeEventListener('change', onChange);
     };
   }, [path]);
 

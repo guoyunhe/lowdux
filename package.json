@@ -28,6 +28,10 @@
     "url": "https://github.com/guoyunhe/lowdux/issues"
   },
   "homepage": "https://github.com/guoyunhe/lowdux#readme",
+  "dependencies": {
+    "deep-object-diff": "^1.1.7",
+    "dot-prop": "^7.2.0"
+  },
   "devDependencies": {
     "@types/jest": "^18.1.1",
     "@types/react": "^18.0.14",
@@ -58,10 +62,5 @@
       "coverage",
       "dist"
     ]
-  },
-  "dependencies": {
-    "deep-object-diff": "^1.1.7",
-    "dot-prop": "^7.2.0",
-    "emittery": "^0.11.0"
   }
 }
