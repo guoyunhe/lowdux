@@ -1,6 +1,4 @@
-import { diff } from 'deep-object-diff';
 import {
-  deepKeys,
   deleteProperty,
   getProperty,
   hasProperty,
@@ -23,39 +21,8 @@ export class LowduxStore extends EventTarget {
    * @param path dot-path of the store data
    */
   public set(path: string, value: any): LowduxStore {
-    const oldValue = this.get(path);
     setProperty(this.data, path, value);
-
-    // record changed paths and emit change events
-    const diffObj = diff(oldValue, value);
-    const eventPathSet = new Set<string>();
-    if (typeof diffObj === 'object') {
-      const keys = deepKeys(diffObj);
-      keys.forEach((key) => {
-        let fullPath = path + '.' + key;
-        let dotIndex = -1;
-        do {
-          eventPathSet.add(fullPath);
-          dotIndex = fullPath.lastIndexOf('.');
-          fullPath = fullPath.substring(0, dotIndex);
-        } while (dotIndex > -1);
-      });
-    } else {
-      // diff of number, string, boolean, null, undefined, etc
-      this.dispatchEvent(new CustomEvent('change', { detail: path }));
-      let fullPath = path;
-      let dotIndex = -1;
-      do {
-        eventPathSet.add(fullPath);
-        dotIndex = fullPath.lastIndexOf('.');
-        fullPath = fullPath.substring(0, dotIndex);
-      } while (dotIndex > -1);
-    }
-
-    eventPathSet.forEach((p) => {
-      this.dispatchEvent(new CustomEvent('change', { detail: p }));
-    });
-
+    this.dispatchEvent(new CustomEvent('change', { detail: path }));
     return this;
   }
 

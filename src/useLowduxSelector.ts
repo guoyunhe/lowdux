@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { store } from './LowduxStore';
 
 export function useLowduxSelector<T>(
@@ -6,19 +6,19 @@ export function useLowduxSelector<T>(
   selector: (state: any) => T = (state) => state
 ) {
   const [state, setState] = useState<T>(selector(store.get(path)));
-  const oldValueRef = useRef<T>(state);
 
   useEffect(() => {
     function update() {
       const newValue = selector(store.get(path));
-      // TODO: deep compare
-      if (oldValueRef.current !== newValue) {
-        setState(newValue);
-        oldValueRef.current = newValue;
-      }
+      setState(newValue);
     }
     function onChange(e: Event) {
-      if ((e as CustomEvent).detail === path) {
+      const detail = (e as CustomEvent).detail as string;
+      if (
+        detail === path ||
+        path.startsWith(detail + '.') ||
+        detail.startsWith(path + '.')
+      ) {
         update();
       }
     }

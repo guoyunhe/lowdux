@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Remove deep-object-diff
+
 ## 0.4.0
 
 - Use EventTarget to reduce dependencies
